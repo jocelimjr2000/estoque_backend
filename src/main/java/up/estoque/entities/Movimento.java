@@ -2,15 +2,22 @@ package up.estoque.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ProdutoQtd {
+public class Movimento {
 
+	/*
+	 * Attributes
+	 */
+	
 	@Id
 	@Column(length = 11)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne
@@ -18,16 +25,24 @@ public class ProdutoQtd {
 	private Nota nota;
 	
 	@ManyToOne
-	@JoinColumn(name = "produto_id")
-	private Produto produto;
+	@JoinColumn(name = "produtoFilial_id")
+	private ProdutoFilial produto;
 
 	private Double qtdMovimentada;
 
 	private Double precoUnitario;
 
-	public ProdutoQtd() {
+	/*
+	 * Constructors
+	 */
+
+	public Movimento() {
 
 	}
+
+	/*
+	 * Getters and Setters
+	 */
 
 	public Long getId() {
 		return id;
@@ -45,11 +60,11 @@ public class ProdutoQtd {
 		this.nota = nota;
 	}
 
-	public Produto getProduto() {
+	public ProdutoFilial getProduto() {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
+	public void setProduto(ProdutoFilial produto) {
 		this.produto = produto;
 	}
 

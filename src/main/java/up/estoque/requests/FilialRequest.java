@@ -1,74 +1,51 @@
-package up.estoque.entities;
+package up.estoque.requests;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
-import up.estoque.requests.FilialRequest;
+import javax.validation.constraints.NotBlank;
 
-@Entity
-public class Endereco {
+public class FilialRequest {
 
 	/*
 	 * Attributes
 	 */
-	
-	@Id
-	@Column(length = 11)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
-	@Column(length = 200)
+	@NotBlank(message = "This field is required")
+	private String nome;
+
+	@NotBlank(message = "This field is required")
 	private String rua;
 
-	@Column(length = 10)
+	@NotBlank(message = "This field is required")
 	private String numero;
 
-	@Column(length = 300)
+	@NotBlank(message = "This field is required")
 	private String complemento;
 
-	@Column(length = 7)
+	@NotBlank(message = "This field is required")
 	private String cep;
 
-	@Column(length = 50)
+	@NotBlank(message = "This field is required")
 	private String bairro;
 
-	@Column(length = 50)
+	@NotBlank(message = "This field is required")
 	private String cidade;
 
-	@Column(length = 2)
+	@NotBlank(message = "This field is required")
 	private String uf;
 
-	/*
-	 * Constructors
-	 */
-
-	public Endereco() {
-
-	}
-
-	public Endereco(FilialRequest request) {
-		this.bairro = request.getBairro();
-		this.cep = request.getCep();
-		this.cidade = request.getCidade();
-		this.complemento = request.getComplemento();
-		this.numero = request.getNumero();
-		this.rua = request.getRua();
-		this.uf = request.getUf();
-	}
+	private List<TelefoneRequest> telefones;
 
 	/*
 	 * Getters and Setters
 	 */
 
-	public Long getId() {
-		return id;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getRua() {
@@ -125,6 +102,14 @@ public class Endereco {
 
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+
+	public List<TelefoneRequest> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<TelefoneRequest> telefones) {
+		this.telefones = telefones;
 	}
 
 }

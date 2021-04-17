@@ -4,36 +4,53 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import up.estoque.requests.FilialRequest;
+
 @Entity
 public class Filial {
 	
+	/*
+	 * Attributes
+	 */
+	
 	@Id
 	@Column(length = 11)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(length = 300)
 	private String nome;
-	
+
 	@OneToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Endereco endereco;
-	
+
 	@OneToMany
-	@JoinColumn(name="filial_id")
+	@JoinColumn(name = "filial_id")
 	private List<Telefone> telefones;
-	
-	@OneToMany
-	@JoinColumn(name="filial_id")
-	private List<Produto> produtos;
-	
+
+	/*
+	 * Constructors
+	 */
+
 	public Filial() {
-		
+
 	}
+	
+	public Filial(FilialRequest request) {
+		this.nome = request.getNome();
+	}
+
+	/*
+	 * Getters and Setters
+	 */
 
 	public Long getId() {
 		return id;
@@ -67,12 +84,4 @@ public class Filial {
 		this.telefones = telefones;
 	}
 
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
-	}
-	
 }

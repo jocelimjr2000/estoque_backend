@@ -6,22 +6,34 @@ import javax.persistence.Id;
 
 @Entity
 public class Categoria {
-	
+
+	/*
+	 * Attributes
+	 */
+
 	@Id
-	@Column(length = 11)
-	private Long id;
-	
+	@Column(length = 1)
+	private String id;
+
 	@Column(length = 10)
 	private String tipo;
+
+	/*
+	 * Constructors
+	 */
 
 	public Categoria() {
 	}
 
-	public Long getId() {
+	/*
+	 * Getters and Setters
+	 */
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

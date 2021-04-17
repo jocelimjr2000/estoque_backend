@@ -1,16 +1,18 @@
 package up.estoque.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import up.estoque.requests.ProdutoRequest;
 
 @Entity
 public class Produto {
+	
+	/*
+	 * Attributes
+	 */
 	
 	@Id
 	@Column(length = 11)
@@ -24,26 +26,32 @@ public class Produto {
 	
 	@Column(length = 100)
 	private String nome;
-	
-	@Temporal(TemporalType.DATE)
-	private Date validade;
-	
+
 	@Column(length = 11)
 	private String unidade;
 	
-	private Double custoMedio;
-	
-	@Column(length = 11)
-	private int qtdTotal;
-	
 	@OneToOne
 	private Categoria categoria;
-	
-	private Double precoLista;
+
+	/*
+	 * Constructors
+	 */
 
 	public Produto() {
 
 	}
+	
+	public Produto(ProdutoRequest request) {
+		this.codigoInterno = request.getCodigoInterno();
+		this.codigoExterno = request.getCodigoExterno();
+		this.descricao = request.getDescricao();
+		this.nome = request.getNome();
+		this.unidade = request.getUnidade();
+	}
+
+	/*
+	 * Getters and Setters
+	 */
 
 	public Long getCodigoInterno() {
 		return codigoInterno;
@@ -77,14 +85,6 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public Date getValidade() {
-		return validade;
-	}
-
-	public void setValidade(Date validade) {
-		this.validade = validade;
-	}
-
 	public String getUnidade() {
 		return unidade;
 	}
@@ -93,36 +93,12 @@ public class Produto {
 		this.unidade = unidade;
 	}
 
-	public Double getCustoMedio() {
-		return custoMedio;
-	}
-
-	public void setCustoMedio(Double custoMedio) {
-		this.custoMedio = custoMedio;
-	}
-
-	public int getQtdTotal() {
-		return qtdTotal;
-	}
-
-	public void setQtdTotal(int qtdTotal) {
-		this.qtdTotal = qtdTotal;
-	}
-
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public Double getPrecoLista() {
-		return precoLista;
-	}
-
-	public void setPrecoLista(Double precoLista) {
-		this.precoLista = precoLista;
 	}
 
 }
