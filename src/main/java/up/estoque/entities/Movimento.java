@@ -1,5 +1,6 @@
 package up.estoque.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,9 +25,9 @@ public class Movimento {
 	@JoinColumn(name = "nota_id")
 	private Nota nota;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "produtoFilial_id")
-	private ProdutoFilial produto;
+	private ProdutoFilial produtoFilial;
 
 	private Double qtdMovimentada;
 
@@ -60,12 +61,12 @@ public class Movimento {
 		this.nota = nota;
 	}
 
-	public ProdutoFilial getProduto() {
-		return produto;
+	public ProdutoFilial getProdutoFilial() {
+		return produtoFilial;
 	}
 
-	public void setProduto(ProdutoFilial produto) {
-		this.produto = produto;
+	public void setProdutoFilial(ProdutoFilial produtoFilial) {
+		this.produtoFilial = produtoFilial;
 	}
 
 	public Double getQtdMovimentada() {

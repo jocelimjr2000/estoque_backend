@@ -3,6 +3,7 @@ package up.estoque.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Nota {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "nota_id")
 	private List<Movimento> produtoQtd;
 
