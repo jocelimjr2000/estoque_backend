@@ -7,4 +7,5 @@ INSERT INTO `Produto` (`codigoInterno`, `codigoExterno`, `descricao`, `nome`, `u
 
 INSERT INTO `Endereco` (`id`, `bairro`, `cep`, `cidade`, `complemento`, `numero`, `rua`, `uf`) VALUES (1, 'Centro', '81820', 'Curitiba', 'casa', '123', 'Rua rua', 'PR');
 
-INSERT INTO `Filial` (`id`, `nome`, `endereco_id`) VALUES (1, 'Filial', 1);
+INSERT INTO `Filial` (`id`, `nome`, `endereco_id`) VALUES (1, 'Filial A', 1);
+INSERT INTO `Filial` (`id`, `nome`, `endereco_id`) VALUES (2, 'Filial B', 1);

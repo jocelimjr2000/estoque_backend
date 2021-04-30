@@ -15,11 +15,11 @@ import up.estoque.requests.FilialRequest;
 
 @Entity
 public class Filial {
-	
+
 	/*
 	 * Attributes
 	 */
-	
+
 	@Id
 	@Column(length = 11)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,10 @@ public class Filial {
 	@JoinColumn(name = "filial_id")
 	private List<Telefone> telefones;
 
+	@OneToMany
+	@JoinColumn(name = "produto_codigoInterno")
+	private List<ProdutoFilial> produtos;
+
 	/*
 	 * Constructors
 	 */
@@ -43,7 +47,7 @@ public class Filial {
 	public Filial() {
 
 	}
-	
+
 	public Filial(FilialRequest request) {
 		this.nome = request.getNome();
 	}
@@ -82,6 +86,14 @@ public class Filial {
 
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
+	}
+
+	public List<ProdutoFilial> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<ProdutoFilial> produtos) {
+		this.produtos = produtos;
 	}
 
 }

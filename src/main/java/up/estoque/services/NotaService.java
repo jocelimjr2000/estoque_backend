@@ -6,7 +6,6 @@ import javax.xml.bind.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import up.estoque.entities.Movimento;
 import up.estoque.entities.Nota;
