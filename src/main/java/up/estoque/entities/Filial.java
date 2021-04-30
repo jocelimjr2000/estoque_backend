@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import up.estoque.requests.FilialRequest;
 
@@ -28,13 +27,7 @@ public class Filial {
 	@Column(length = 300)
 	private String nome;
 
-	@OneToOne
-	@JoinColumn(referencedColumnName = "id")
-	private Endereco endereco;
-
-	@OneToMany
-	@JoinColumn(name = "filial_id")
-	private List<Telefone> telefones;
+	
 
 	@OneToMany
 	@JoinColumn(name = "produto_codigoInterno")
@@ -72,21 +65,7 @@ public class Filial {
 		this.nome = nome;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public List<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
-	}
+	
 
 	public List<ProdutoFilial> getProdutos() {
 		return produtos;

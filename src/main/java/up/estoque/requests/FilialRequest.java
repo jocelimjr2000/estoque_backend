@@ -1,6 +1,6 @@
 package up.estoque.requests;
 
-import java.util.List;
+
 
 import javax.validation.constraints.NotBlank;
 
@@ -34,7 +34,6 @@ public class FilialRequest {
 	@NotBlank(message = "This field is required")
 	private String uf;
 
-	private List<TelefoneRequest> telefones;
 
 	/*
 	 * Getters and Setters
@@ -102,14 +101,6 @@ public class FilialRequest {
 
 	public void setUf(String uf) {
 		this.uf = uf;
-	}
-
-	public List<TelefoneRequest> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<TelefoneRequest> telefones) {
-		this.telefones = telefones;
 	}
 
 }
