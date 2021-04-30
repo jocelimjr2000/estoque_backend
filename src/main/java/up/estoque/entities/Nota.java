@@ -13,8 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import up.estoque.requests.NotaRequest;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Nota {
@@ -29,16 +29,19 @@ public class Nota {
 	private Long id;
 
 	@Column(length = 40)
+	@NotBlank(message = "This field is required")
 	private String numero;
 
 	@Column(length = 1)
 	private String tipo;
 
 	@Temporal(TemporalType.DATE)
+	@NotNull(message = "This field is required")
 	private Date data;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "nota_id")
+	@NotNull(message = "This field is required")
 	private List<Movimento> produtoQtd;
 
 	/*
@@ -47,12 +50,6 @@ public class Nota {
 
 	public Nota() {
 
-	}
-
-	public Nota(NotaRequest request) {
-		this.numero = request.getNumero();
-		this.tipo = request.getTipo();
-		this.data = request.getData();
 	}
 
 	/*

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
 import up.estoque.entities.Endereco;
 import up.estoque.entities.Filial;
 import up.estoque.entities.Telefone;
@@ -41,6 +42,7 @@ public class FilialResource extends CustomErrors {
 	
 	@PostMapping
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@ApiOperation(value = "Cadastrar Filial")
 	public ResponseEntity<Filial> create(@Valid @RequestBody FilialRequest requestValidated) {
 		try {
 			

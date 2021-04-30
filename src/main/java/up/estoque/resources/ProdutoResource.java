@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
 import up.estoque.entities.Categoria;
 import up.estoque.entities.Produto;
 import up.estoque.errors.CustomErrors;
@@ -28,6 +29,7 @@ public class ProdutoResource extends CustomErrors {
 	CategoriaRepository categoriaRepository;
 	
 	@PostMapping
+	@ApiOperation(value = "Cadastrar produto")
 	public ResponseEntity<Produto> create(@Valid @RequestBody ProdutoRequest validatedRequest){
 		try {
 			
@@ -45,4 +47,6 @@ public class ProdutoResource extends CustomErrors {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	
 }

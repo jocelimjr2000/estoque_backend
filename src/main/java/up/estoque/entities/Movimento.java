@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Movimento {
@@ -29,8 +30,10 @@ public class Movimento {
 	@JoinColumn(name = "produtoFilial_id")
 	private ProdutoFilial produtoFilial;
 
+	@NotNull(message = "This field is required")
 	private Double qtdMovimentada;
 
+	@NotNull(message = "This field is required")
 	private Double precoUnitario;
 
 	/*
