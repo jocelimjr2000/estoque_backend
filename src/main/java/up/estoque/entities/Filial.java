@@ -27,8 +27,6 @@ public class Filial {
 	@Column(length = 300)
 	private String nome;
 
-	
-
 	@OneToMany
 	@JoinColumn(name = "produto_codigoInterno")
 	private List<ProdutoFilial> produtos;
