@@ -58,7 +58,8 @@ public class NotaService {
 
 					produtoFilial.setQtd(qtdTotal);
 		
-					produtoFilial.setCustoMedio(Double.parseDouble(new DecimalFormat("#.##").format(custoMedio)));
+//					produtoFilial.setCustoMedio(Double.parseDouble(new DecimalFormat("#.##").format(custoMedio)));
+					produtoFilial.setCustoMedio(custoMedio);
 
 					movimento.setProdutoFilial(produtoFilial);
 
@@ -90,6 +91,7 @@ public class NotaService {
 			// Verificar se produto existe no banco
 			if (produtoFilial == null) {
 				throw new ValidationException("Produto filial não encontrado", "400");
+				
 			}
 			
 			// Verificar se a qtd movimentada é maior que a qtd em estoque

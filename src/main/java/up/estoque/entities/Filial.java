@@ -27,9 +27,6 @@ public class Filial {
 	@Column(length = 300)
 	private String nome;
 
-	@OneToMany
-	@JoinColumn(name = "produto_codigoInterno")
-	private List<ProdutoFilial> produtos;
 
 	/*
 	 * Constructors
@@ -63,14 +60,5 @@ public class Filial {
 		this.nome = nome;
 	}
 
-	
-
-	public List<ProdutoFilial> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<ProdutoFilial> produtos) {
-		this.produtos = produtos;
-	}
 
 }
