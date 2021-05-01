@@ -51,7 +51,7 @@ public class NotaResource extends CustomErrors {
 		}
 	}
 	
-	@GetMapping("/{filial_codigo}")
+	@GetMapping
 	@ApiOperation(value = "Listar notas")
 	public ResponseEntity<List<Nota>> findByFilial(@PathVariable("filial_codigo") Long filial_codigo) {
 		try {
