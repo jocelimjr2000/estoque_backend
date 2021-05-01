@@ -1,5 +1,7 @@
 package up.estoque.services;
 
+import java.util.List;
+
 import javax.xml.bind.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,13 @@ public class NotaService {
 
 	@Autowired
 	ProdutoFilialRepository produtoFilialRepository;
+	
+	public List<Nota> findByFilial(){
+		return notaRepository.findAll();
+	}
 
 	public Nota processarEntrada(Nota nota) {
-		nota.setTipo("E");
+		//nota.setMovimentacao("E");
 		
 		for (Movimento movimento : nota.getProdutoQtd()) {
 
@@ -81,7 +87,7 @@ public class NotaService {
 	}
 	
 	public Nota processarSaida(Nota nota) throws ValidationException {
-		nota.setTipo("S");
+		//nota.setMovimentacao("S");
 		
 		for (Movimento movimento : nota.getProdutoQtd()) {
 

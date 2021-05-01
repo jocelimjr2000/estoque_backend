@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
@@ -29,19 +30,19 @@ public class Nota {
 	private Long codigo;
 
 	@Column(length = 40)
-	@NotBlank(message = "This field is required")
+	@NotBlank(message = "Preenchimento Obrigatório")
 	private String numero;
 
-	@Column(length = 1)
-	private String tipo;
+	@OneToOne
+	private NotaTipo tipo;
 
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "This field is required")
+	@NotNull(message = "Preenchimento Obrigatório")
 	private Date data;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "nota_codigo")
-	@NotNull(message = "This field is required")
+	@NotNull(message = "Preenchimento Obrigatório")
 	private List<Movimento> produtoQtd;
 
 	/*
@@ -72,11 +73,11 @@ public class Nota {
 		this.numero = numero;
 	}
 
-	public String getTipo() {
+	public NotaTipo getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(NotaTipo tipo) {
 		this.tipo = tipo;
 	}
 
