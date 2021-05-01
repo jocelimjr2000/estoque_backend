@@ -22,13 +22,13 @@ public class Filial {
 	@Id
 	@Column(length = 11)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long codigo;
 
 	@Column(length = 300)
 	private String nome;
-	
-	@OneToMany(mappedBy = "filial", cascade = CascadeType.ALL)
-	  private List<ProdutoFilial> produtosFilial;
+
+//	@OneToMany(mappedBy = "filial", cascade = CascadeType.ALL)
+//	private List<ProdutoFilial> produtosFilial;
 
 	/*
 	 * Constructors
@@ -46,12 +46,12 @@ public class Filial {
 	 * Getters and Setters
 	 */
 
-	public Long getId() {
-		return id;
+	public Long getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNome() {
@@ -61,13 +61,13 @@ public class Filial {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public List<ProdutoFilial> getProdutosFilial() {
-		return produtosFilial;
-	}
 
-	public void setProdutosFilial(List<ProdutoFilial> produtosFilial) {
-		this.produtosFilial = produtosFilial;
-	}
-
+//	public List<ProdutoFilial> getProdutosFilial() {
+//		return produtosFilial;
+//	}
+//
+//	public void setProdutosFilial(List<ProdutoFilial> produtosFilial) {
+//		this.produtosFilial = produtosFilial;
+//	}
 
 }

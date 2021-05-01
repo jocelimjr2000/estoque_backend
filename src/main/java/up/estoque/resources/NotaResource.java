@@ -26,13 +26,13 @@ public class NotaResource extends CustomErrors {
 	@PostMapping("/entrada")
 	@ApiOperation(value = "Cadastrar nota de entrada")
 	public ResponseEntity<Nota> entrada(@Valid @RequestBody Nota nota) {
-		try {
+//		try {
 
 			return new ResponseEntity<>(notaService.processarEntrada(nota), HttpStatus.CREATED);
 
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
 	}
 	
 	@PostMapping("/saida")

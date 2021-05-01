@@ -3,6 +3,8 @@ package up.estoque.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Categoria {
@@ -13,9 +15,12 @@ public class Categoria {
 
 	@Id
 	@Column(length = 1)
-	private String id;
+	@NotNull(message = "Preenchimento Obrigatório")
+	@Size(min = 1, max = 1, message = "Permitido somente 1 caractere")
+	private String codigo;
 
 	@Column(length = 10)
+	@NotNull(message = "Preenchimento Obrigatório")
 	private String tipo;
 
 	/*
@@ -29,12 +34,12 @@ public class Categoria {
 	 * Getters and Setters
 	 */
 
-	public String getId() {
-		return id;
+	public String getCodigo() {
+		return codigo.toUpperCase();
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getTipo() {

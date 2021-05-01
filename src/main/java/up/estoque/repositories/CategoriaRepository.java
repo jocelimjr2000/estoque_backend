@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import up.estoque.entities.Categoria;
 
-public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, String> {
 
-	Categoria findById(String id);
+	Categoria findByCodigo(String codigo);
 	
 }

@@ -20,14 +20,14 @@ public class Movimento {
 	@Id
 	@Column(length = 11)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long codigo;
 	
 	@ManyToOne
-	@JoinColumn(name = "nota_id")
+	@JoinColumn(name = "nota_codigo")
 	private Nota nota;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "produtoFilial_id")
+	@JoinColumn(name = "produtoFilial_codigo")
 	private ProdutoFilial produtoFilial;
 
 	@NotNull(message = "This field is required")
@@ -37,23 +37,15 @@ public class Movimento {
 	private Double precoUnitario;
 
 	/*
-	 * Constructors
-	 */
-
-	public Movimento() {
-
-	}
-
-	/*
 	 * Getters and Setters
 	 */
 
-	public Long getId() {
-		return id;
+	public Long getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public Nota getNota() {

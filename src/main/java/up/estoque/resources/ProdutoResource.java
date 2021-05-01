@@ -41,7 +41,7 @@ public class ProdutoResource extends CustomErrors {
 			
 			Produto produto = new Produto(validatedRequest);
 			
-			Categoria categoria = categoriaRepository.findById(validatedRequest.getCategoria());
+			Categoria categoria = categoriaRepository.findByCodigo(validatedRequest.getCategoria());
 
 			produto.setCategoria(categoria);
 			

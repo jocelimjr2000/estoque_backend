@@ -13,32 +13,32 @@ import up.estoque.requests.ProdutoRequest;
 
 @Entity
 public class Produto {
-	
+
 	/*
 	 * Attributes
 	 */
-	
+
 	@Id
 	@Column(length = 11)
 	private Long codigoInterno;
-	
+
 	@Column(length = 50)
 	private String codigoExterno;
-	
+
 	@Column(length = 200)
 	private String descricao;
-	
+
 	@Column(length = 100)
 	private String nome;
 
 	@Column(length = 11)
 	private String unidade;
-	
+
 	@OneToOne
 	private Categoria categoria;
-	
+
 	@OneToMany(mappedBy = "filial", cascade = CascadeType.ALL)
-	  private List<ProdutoFilial> produtosFilial;
+	private List<ProdutoFilial> produtosFilial;
 
 	/*
 	 * Constructors
@@ -47,7 +47,7 @@ public class Produto {
 	public Produto() {
 
 	}
-	
+
 	public Produto(ProdutoRequest request) {
 		this.codigoInterno = request.getCodigoInterno();
 		this.codigoExterno = request.getCodigoExterno();
@@ -107,7 +107,7 @@ public class Produto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	public List<ProdutoFilial> getProdutosFilial() {
 		return produtosFilial;
 	}

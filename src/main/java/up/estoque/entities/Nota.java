@@ -26,7 +26,7 @@ public class Nota {
 	@Id
 	@Column(length = 11)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long codigo;
 
 	@Column(length = 40)
 	@NotBlank(message = "This field is required")
@@ -40,7 +40,7 @@ public class Nota {
 	private Date data;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "nota_id")
+	@JoinColumn(name = "nota_codigo")
 	@NotNull(message = "This field is required")
 	private List<Movimento> produtoQtd;
 
@@ -56,12 +56,12 @@ public class Nota {
 	 * Getters and Setters
 	 */
 
-	public Long getId() {
-		return id;
+	public Long getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNumero() {

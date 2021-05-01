@@ -15,7 +15,7 @@ public class PrecoService {
 	
 	public Movimento precoMedio(Movimento movimento) {
 		
-		Long filial_id = movimento.getProdutoFilial().getFilial().getId();
+		Long filial_id = movimento.getProdutoFilial().getFilial().getCodigo();
 		Long produto_codigoInterno = movimento.getProdutoFilial().getProduto().getCodigoInterno();
 		
 		// Pesquisar dados do produto/filial

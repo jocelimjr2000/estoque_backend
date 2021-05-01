@@ -27,7 +27,7 @@ public class NotaService {
 		
 		for (Movimento movimento : nota.getProdutoQtd()) {
 
-			Long filial_id = movimento.getProdutoFilial().getFilial().getId();
+			Long filial_id = movimento.getProdutoFilial().getFilial().getCodigo();
 			Long produto_codigoInterno = movimento.getProdutoFilial().getProduto().getCodigoInterno();
 
 			// Pesquisar dados do produto/filial
@@ -81,7 +81,7 @@ public class NotaService {
 		
 		for (Movimento movimento : nota.getProdutoQtd()) {
 
-			Long filial_id = movimento.getProdutoFilial().getFilial().getId();
+			Long filial_id = movimento.getProdutoFilial().getFilial().getCodigo();
 			Long produto_codigoInterno = movimento.getProdutoFilial().getProduto().getCodigoInterno();
 
 			// Pesquisar dados do produto/filial

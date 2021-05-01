@@ -1,6 +1,6 @@
 package up.estoque.resources;
 
-
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -29,43 +29,61 @@ public class FilialResource extends CustomErrors {
 
 	@Autowired
 	FilialRepository filialRepository;
-	
-	
+
 	@PostMapping
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	@ApiOperation(value = "Cadastrar Filial")
 	public ResponseEntity<Filial> create(@Valid @RequestBody FilialRequest requestValidated) {
 		try {
-			
+
 			// Salvar Filial
 			Filial filial = new Filial(requestValidated);
 			filial = filialRepository.save(filial);
-		
-		
+
 			return new ResponseEntity<>(filial, HttpStatus.CREATED);
 
 		} catch (Exception e) {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			
+
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@GetMapping("/{nome}")
-	@ApiOperation(value ="Encontrar Filial")
-	public ResponseEntity<Filial> findFilial(@PathVariable("nome") String nome){
+	@GetMapping
+	@ApiOperation(value = "Listar Filiais")
+	public ResponseEntity<List<Filial>> findAll() {
 		try {
-			
-			Filial filial = filialRepository.findByNome(nome);
-		
-			if (filial != null) {
-				return new ResponseEntity<>(filial, HttpStatus.OK);
+
+			List<Filial> result = filialRepository.findAll();
+
+			if (result != null) {
+				return new ResponseEntity<>(result, HttpStatus.OK);
 			}
 			
-			return this.singleErrorException("error", "Filial Não Cadastrada");
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
- 
+
+	
+	@GetMapping("/{codigo}")
+	@ApiOperation(value = "Encontrar Filial")
+	public ResponseEntity<Filial> findFilial(@PathVariable("codigo") Long codigo) {
+		try {
+
+			Filial filial = filialRepository.findByCodigo(codigo);
+
+			if (filial != null) {
+				return new ResponseEntity<>(filial, HttpStatus.OK);
+			}
+			
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 }
