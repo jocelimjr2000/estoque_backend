@@ -51,12 +51,12 @@ public class FilialResource extends CustomErrors {
 		}
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{nome}")
 	@ApiOperation(value ="Encontrar Filial")
-	public ResponseEntity<Filial> findFilial(@PathVariable("id") long id){
+	public ResponseEntity<Filial> findFilial(@PathVariable("nome") String nome){
 		try {
 			
-			Filial filial = filialRepository.findById(id);
+			Filial filial = filialRepository.findByNome(nome);
 		
 			if (filial != null) {
 				return new ResponseEntity<>(filial, HttpStatus.OK);
