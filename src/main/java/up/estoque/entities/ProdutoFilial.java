@@ -22,6 +22,8 @@ public class ProdutoFilial {
 	private Double qtd;
 
 	private Double custoMedio;
+	
+	private Double precoDeLista;
 
 	@ManyToOne
 	private Filial filial;
@@ -71,6 +73,14 @@ public class ProdutoFilial {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+	
+	public Double getPrecoDeLista() {
+		return precoDeLista;
+	}
+
+	public void setPrecoDeLista(Double precoDeLista) {
+		this.precoDeLista = precoDeLista;
 	}
 
 }
