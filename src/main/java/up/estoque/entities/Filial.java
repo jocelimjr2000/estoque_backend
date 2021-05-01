@@ -2,15 +2,15 @@ package up.estoque.entities;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
-import up.estoque.requests.FilialRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Filial {
@@ -25,22 +25,12 @@ public class Filial {
 	private Long codigo;
 
 	@Column(length = 300)
+	@NotBlank(message = "Preenchimento Obrigatório")
 	private String nome;
-
-//	@OneToMany(mappedBy = "filial", cascade = CascadeType.ALL)
-//	private List<ProdutoFilial> produtosFilial;
-
-	/*
-	 * Constructors
-	 */
-
-	public Filial() {
-
-	}
-
-	public Filial(FilialRequest request) {
-		this.nome = request.getNome();
-	}
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "filial")
+	private List<ProdutoFilial> produtosFilial;
 
 	/*
 	 * Getters and Setters
@@ -62,12 +52,12 @@ public class Filial {
 		this.nome = nome;
 	}
 
-//	public List<ProdutoFilial> getProdutosFilial() {
-//		return produtosFilial;
-//	}
-//
-//	public void setProdutosFilial(List<ProdutoFilial> produtosFilial) {
-//		this.produtosFilial = produtosFilial;
-//	}
+	public List<ProdutoFilial> getProdutosFilial() {
+		return produtosFilial;
+	}
+
+	public void setProdutosFilial(List<ProdutoFilial> produtosFilial) {
+		this.produtosFilial = produtosFilial;
+	}
 
 }

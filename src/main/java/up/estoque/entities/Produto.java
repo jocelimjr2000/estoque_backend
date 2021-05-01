@@ -1,15 +1,11 @@
 package up.estoque.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import up.estoque.requests.ProdutoRequest;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Produto {
@@ -20,41 +16,28 @@ public class Produto {
 
 	@Id
 	@Column(length = 11)
+	@NotNull(message = "Preenchimento Obrigatório")
 	private Long codigoInterno;
 
 	@Column(length = 50)
+	@NotBlank(message = "Preenchimento Obrigatório")
 	private String codigoExterno;
 
 	@Column(length = 200)
+	@NotBlank(message = "Preenchimento Obrigatório")
 	private String descricao;
 
 	@Column(length = 100)
+	@NotBlank(message = "Preenchimento Obrigatório")
 	private String nome;
 
 	@Column(length = 11)
+	@NotBlank(message = "Preenchimento Obrigatório")
 	private String unidade;
 
 	@OneToOne
+	@NotNull(message = "Preenchimento Obrigatório")
 	private Categoria categoria;
-
-	@OneToMany(mappedBy = "filial", cascade = CascadeType.ALL)
-	private List<ProdutoFilial> produtosFilial;
-
-	/*
-	 * Constructors
-	 */
-
-	public Produto() {
-
-	}
-
-	public Produto(ProdutoRequest request) {
-		this.codigoInterno = request.getCodigoInterno();
-		this.codigoExterno = request.getCodigoExterno();
-		this.descricao = request.getDescricao();
-		this.nome = request.getNome();
-		this.unidade = request.getUnidade();
-	}
 
 	/*
 	 * Getters and Setters
@@ -106,14 +89,6 @@ public class Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
-	}
-
-	public List<ProdutoFilial> getProdutosFilial() {
-		return produtosFilial;
-	}
-
-	public void setProdutosFilial(List<ProdutoFilial> produtosFilial) {
-		this.produtosFilial = produtosFilial;
 	}
 
 }

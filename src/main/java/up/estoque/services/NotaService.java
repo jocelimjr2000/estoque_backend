@@ -1,14 +1,14 @@
 package up.estoque.services;
 
-import java.text.DecimalFormat;
-
 import javax.xml.bind.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import up.estoque.entities.Filial;
 import up.estoque.entities.Movimento;
 import up.estoque.entities.Nota;
+import up.estoque.entities.Produto;
 import up.estoque.entities.ProdutoFilial;
 import up.estoque.repositories.NotaRepository;
 import up.estoque.repositories.ProdutoFilialRepository;
@@ -29,11 +29,16 @@ public class NotaService {
 
 			Long filial_id = movimento.getProdutoFilial().getFilial().getCodigo();
 			Long produto_codigoInterno = movimento.getProdutoFilial().getProduto().getCodigoInterno();
-
+			
+			Filial filial = new Filial();
+			filial.setCodigo(filial_id);
+			
+			Produto produto = new Produto();
+			produto.setCodigoInterno(produto_codigoInterno);
+			
 			// Pesquisar dados do produto/filial
-			ProdutoFilial produtoFilial = produtoFilialRepository.findQtdByFilialAndProduto(filial_id,
-					produto_codigoInterno);
-
+			ProdutoFilial produtoFilial = produtoFilialRepository.findByFilialAndProduto(filial, produto);
+			
 			// Não existe no banco
 			if (produtoFilial == null) {
 				movimento.getProdutoFilial().setCustoMedio(movimento.getPrecoUnitario());
@@ -58,7 +63,6 @@ public class NotaService {
 
 					produtoFilial.setQtd(qtdTotal);
 		
-//					produtoFilial.setCustoMedio(Double.parseDouble(new DecimalFormat("#.##").format(custoMedio)));
 					produtoFilial.setCustoMedio(custoMedio);
 
 					movimento.setProdutoFilial(produtoFilial);
@@ -83,11 +87,16 @@ public class NotaService {
 
 			Long filial_id = movimento.getProdutoFilial().getFilial().getCodigo();
 			Long produto_codigoInterno = movimento.getProdutoFilial().getProduto().getCodigoInterno();
-
-			// Pesquisar dados do produto/filial
-			ProdutoFilial produtoFilial = produtoFilialRepository.findQtdByFilialAndProduto(filial_id,
-					produto_codigoInterno);
 			
+			Filial filial = new Filial();
+			filial.setCodigo(filial_id);
+			
+			Produto produto = new Produto();
+			produto.setCodigoInterno(produto_codigoInterno);
+			
+			// Pesquisar dados do produto/filial
+			ProdutoFilial produtoFilial = produtoFilialRepository.findByFilialAndProduto(filial, produto);
+
 			// Verificar se produto existe no banco
 			if (produtoFilial == null) {
 				throw new ValidationException("Produto filial não encontrado", "400");

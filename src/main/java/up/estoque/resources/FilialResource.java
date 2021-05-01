@@ -21,7 +21,6 @@ import io.swagger.annotations.ApiOperation;
 import up.estoque.entities.Filial;
 import up.estoque.errors.CustomErrors;
 import up.estoque.repositories.FilialRepository;
-import up.estoque.requests.FilialRequest;
 
 @RestController
 @RequestMapping("/filial")
@@ -33,11 +32,9 @@ public class FilialResource extends CustomErrors {
 	@PostMapping
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	@ApiOperation(value = "Cadastrar Filial")
-	public ResponseEntity<Filial> create(@Valid @RequestBody FilialRequest requestValidated) {
+	public ResponseEntity<Filial> create(@Valid @RequestBody Filial filial) {
 		try {
 
-			// Salvar Filial
-			Filial filial = new Filial(requestValidated);
 			filial = filialRepository.save(filial);
 
 			return new ResponseEntity<>(filial, HttpStatus.CREATED);
@@ -48,7 +45,7 @@ public class FilialResource extends CustomErrors {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@GetMapping
 	@ApiOperation(value = "Listar Filiais")
 	public ResponseEntity<List<Filial>> findAll() {
@@ -59,15 +56,14 @@ public class FilialResource extends CustomErrors {
 			if (result != null) {
 				return new ResponseEntity<>(result, HttpStatus.OK);
 			}
-			
+
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-			
+
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	
 	@GetMapping("/{codigo}")
 	@ApiOperation(value = "Encontrar Filial")
 	public ResponseEntity<Filial> findFilial(@PathVariable("codigo") Long codigo) {
@@ -78,9 +74,9 @@ public class FilialResource extends CustomErrors {
 			if (filial != null) {
 				return new ResponseEntity<>(filial, HttpStatus.OK);
 			}
-			
+
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-			
+
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
